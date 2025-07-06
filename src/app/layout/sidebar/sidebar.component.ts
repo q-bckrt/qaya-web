@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrls: ['./sidebar.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class SidebarComponent {
+  isExpanded = false;
 
+  onMouseEnter() {
+    this.isExpanded = true;
+  }
+
+  onMouseLeave() {
+    this.isExpanded = false;
+  }
 }

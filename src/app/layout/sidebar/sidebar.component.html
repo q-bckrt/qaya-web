@@ -1,1 +1,51 @@
-<p>sidebar works!</p>
+<aside (mouseenter)="onMouseEnter()"
+       (mouseleave)="onMouseLeave()"
+        [ngClass]="{'w-64': isExpanded, 'w-16': !isExpanded}"
+       class="h-screen bg-slate-950 flex flex-col">
+  <!-- Logo Section -->
+  <div class="flex items-center h-16 px-5">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="stroke-teal-400 fill-teal-400 w-6 h-6">
+      <g fill-rule="evenodd">
+      <path d="M12 3c2.225 0 4.263.808 5.833 2.146c.931-.22 1.785-.322 2.507-.26c.76.064 1.603.337 2.052 1.114c.407.704.352 1.49.076 2.204c-.272.702-.787 1.427-1.481 2.163l-.114.12a9 9 0 0 1-14.62 8.44l-.16.04c-.985.233-1.87.317-2.615.2c-.757-.118-1.465-.465-1.87-1.167c-.45-.777-.264-1.644.06-2.334c.308-.655.823-1.344 1.479-2.04A9 9 0 0 1 12 3ZM3.345 17.009c-.143-.709 1-1.75 1.406-2.167a1.53 1.53 0 0 0 .4-1.386a7 7 0 0 1 11.531-6.66a1.53 1.53 0 0 0 1.402.348c.563-.144 2.039-.613 2.581-.135c.336.704-.971 1.832-1.38 2.239a4.684 4.684 0 0 0-.01.01c-1.236 1.23-3.281 2.746-6.275 4.474c-2.992 1.728-5.326 2.74-7.01 3.197l-.015.004c-.527.143-2.209.689-2.63.076Zm5.288 1.13c1.538-.614 3.33-1.499 5.367-2.675c2.036-1.175 3.698-2.284 4.998-3.31A7 7 0 0 1 8.633 18.14Z"/>
+    </g>
+    </svg>
+    <a *ngIf="isExpanded" class="ml-12 text-white font-bold text-2xl" href="/">
+      QAYA
+    </a>
+  </div>
+  <!-- Navigation Links -->
+  <nav class="flex-1 px-2 py-4 space-y-2">
+    <a class="flex items-center px-3 py-2 text-white rounded-md hover:bg-slate-800">
+      <svg class="w-6 h-6 stroke-teal-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M3 8.976C3 4.05476 4.05476 3 8.976 3H15.024C19.9452 3 21 4.05476 21 8.976V15.024C21 19.9452 19.9452 21 15.024 21H8.976C4.05476 21 3 19.9452 3 15.024V8.976Z" stroke-width="2"></path>
+          <path d="M21 9L3 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M9 21L9 9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+      </svg>
+      <span *ngIf="isExpanded" class="ml-3">Dashboard</span>
+    </a>
+    <a class="flex items-center px-3 py-2 text-white rounded-md hover:bg-slate-800">
+      <svg class="w-6 h-6 stroke-teal-400"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M3 9.312C3 4.93757 3.93757 4 8.312 4H9.92963C10.5983 4 11.2228 4.3342 11.5937 4.8906L12.4063 6.1094C12.7772 6.6658 13.4017 7 14.0704 7C15.9647 7 17.8145 7 19.1258 7C20.1807 7 21.0128 7.82095 21.0029 8.8758C21.0013 9.05376 21 9.20638 21 9.312V14.688C21 19.0624 20.0624 20 15.688 20H8.312C3.93757 20 3 19.0624 3 14.688V9.312Z" stroke-width="2"></path>
+        </g>
+      </svg>
+      <span *ngIf="isExpanded" class="ml-3">Accounts</span>
+    </a>
+    <a class="flex items-center px-3 py-2 text-white rounded-md hover:bg-slate-800">
+      <svg class="w-6 h-6 stroke-teal-400" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M3 6.39995C3 4.59602 3.35289 4.0857 4.91731 4.01038C5.23384 3.99513 5.54597 3.92393 5.83515 3.79431C6.48805 3.50164 7.74623 3 8.7 3C9.44765 3 10.3824 3.30825 11.0659 3.58246C11.6626 3.8218 12.3374 3.8218 12.9341 3.58246C13.6176 3.30825 14.5523 3 15.3 3C16.2538 3 17.512 3.50164 18.1649 3.79431C18.454 3.92393 18.7662 3.99513 19.0827 4.01038C20.6471 4.0857 21 4.59602 21 6.39995V18.6C21 20.4039 20.6471 20.9142 19.0827 20.9896C18.7662 21.0048 18.454 20.924 18.1648 20.7943C17.5119 20.5017 16.2538 20 15.3 20C14.5524 20 13.6177 20.3083 12.9341 20.5825C12.3374 20.8218 11.6626 20.8218 11.0659 20.5825C10.3823 20.3083 9.44764 20 8.7 20C7.74624 20 6.48807 20.5017 5.83516 20.7943C5.54598 20.924 5.23383 21.0048 4.91729 20.9896C3.35289 20.9142 3 20.4039 3 18.6V6.39995Z" stroke-width="2"></path>
+          <path d="M12 4V20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+      </svg>
+      <span *ngIf="isExpanded"class="ml-3">Transactions</span>
+    </a>
+  </nav>
+</aside>
