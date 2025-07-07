@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {LayoutService} from '../../services/layout.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,14 +10,21 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule]
 })
-export class SidebarComponent {
-  isExpanded = false;
+export class SidebarComponent implements OnInit {
+
+  isSidebarExpanded$! : Observable<boolean>;
+
+  constructor(private layoutService: LayoutService) {}
+
+  ngOnInit() {
+    this.isSidebarExpanded$ = this.layoutService.sidebarExpandedSubject.asObservable();
+  }
 
   onMouseEnter() {
-    this.isExpanded = true;
+    this.layoutService.sidebarExpandedSubject.next(true);
   }
 
   onMouseLeave() {
-    this.isExpanded = false;
+    this.layoutService.sidebarExpandedSubject.next(false);
   }
 }
