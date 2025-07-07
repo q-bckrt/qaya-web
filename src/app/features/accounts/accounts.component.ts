@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accounts',
-  imports: [],
   templateUrl: './accounts.component.html',
-  styleUrl: './accounts.component.scss'
+  styleUrls: ['./accounts.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class AccountsComponent {
-
 }

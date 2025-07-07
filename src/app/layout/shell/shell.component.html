@@ -1,8 +1,8 @@
 <div class="app-layout flex text-white min-h-screen bg-neutral-950">
   <app-sidebar class="fixed top-5 left-5 z-10"></app-sidebar>
-  <div class="main-content pl-10 pr-5 pt-5 w-full">
+  <div class="main-content pl-10 pr-5 pt-5 w-full flex flex-col">
     <app-header></app-header>
-    <main class="page-content">
+    <main class="page-content pl-16 pt-4 flex-1 overflow-y-auto">
       <router-outlet></router-outlet>
     </main>
   </div>
