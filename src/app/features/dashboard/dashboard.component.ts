@@ -3,13 +3,16 @@ import {TransactionsService} from '../../services/transactions.service';
 import {TransactionDto} from '../../models/transaction.dto';
 import {NgClass, NgForOf} from '@angular/common';
 import { CurrencyIntlPipe} from '../../shared/pipes/currency-intl.pipe';
+import {NgChartsModule} from 'ng2-charts';
+
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     NgForOf,
     NgClass,
-    CurrencyIntlPipe
+    CurrencyIntlPipe,
+    NgChartsModule
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -29,6 +32,4 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
-  // Additional methods and properties can be added as needed
 }

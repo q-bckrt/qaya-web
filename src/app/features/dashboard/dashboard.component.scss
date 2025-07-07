@@ -1,0 +1,19 @@
+/* Hide default scrollbar background */
+.recent-transactions::-webkit-scrollbar {
+  width: 12px;
+  background: transparent; /* or same as bg color */
+}
+
+/* Scrollbar thumb with some transparency */
+.recent-transactions::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  border: 3px solid transparent; /* space between thumb and track */
+  background-clip: content-box; /* to keep border space */
+}
+
+/* Firefox */
+.recent-transactions {
+  scrollbar-width: inherit;
+  scrollbar-color: rgb(120, 120, 120, 0.5) transparent;
+}
