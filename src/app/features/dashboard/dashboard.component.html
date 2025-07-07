@@ -48,7 +48,9 @@
 
     <!-- Add Transaction -->
     <div class="flex flex-row justify-between">
-      <button class="bg-lime-500 hover:bg-lime-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition">
+      <button class="bg-lime-500 hover:bg-lime-600 text-black font-semibold py-2 px-4 rounded-lg shadow-md transition"
+      (click)="isTransactionModalOpen = true"
+      >
         + Add Transaction
       </button>
       <div class="flex gap-4">
@@ -142,3 +144,9 @@
     </div>
   </div>
 </div>
+
+
+<app-add-transaction-modal
+  [isOpen]="isTransactionModalOpen"
+  (close)="isTransactionModalOpen = false"
+></app-add-transaction-modal>

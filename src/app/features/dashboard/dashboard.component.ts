@@ -6,6 +6,7 @@ import { CurrencyIntlPipe} from '../../shared/pipes/currency-intl.pipe';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js/auto';
 import { ChartData, ChartOptions, ChartType, ChartDataset } from 'chart.js';
+import {AddTransactionModalComponent} from '../transactions/add-transaction-modal/add-transaction-modal.component';
 
 
 
@@ -16,6 +17,7 @@ import { ChartData, ChartOptions, ChartType, ChartDataset } from 'chart.js';
     NgClass,
     CurrencyIntlPipe,
     NgChartsModule,
+    AddTransactionModalComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -24,6 +26,7 @@ import { ChartData, ChartOptions, ChartType, ChartDataset } from 'chart.js';
 export class DashboardComponent implements OnInit {
 
   allTransactions: TransactionDto[] = [];
+  isTransactionModalOpen: boolean = false;
 
   constructor(private transactionService: TransactionsService) {}
 
