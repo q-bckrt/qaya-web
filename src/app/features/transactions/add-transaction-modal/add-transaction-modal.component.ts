@@ -33,10 +33,14 @@ import {FormsModule} from '@angular/forms';
     ]),
   ]
 })
+
 export class AddTransactionModalComponent {
   @Input() isOpen: boolean = false;
   @Output() close = new EventEmitter<void>();
   @Output() submit = new EventEmitter<any>(); // pass data to parent
+
+  activeClass = 'bg-lime-500 text-black font-semibold py-2 rounded-lg shadow-md text-center cursor-pointer';
+  inactiveClass = 'bg-lime-300 text-black py-2 rounded-lg text-center cursor-pointer';
 
 
   categories = [
