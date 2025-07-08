@@ -1,7 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import {FormsModule} from '@angular/forms';
+import { AccountsService} from '../../../services/accounts.service';
+import {AccountDto} from '../../../models/account.dto';
+import {CategoryDto} from '../../../models/category.dto';
+import {CategoriesService} from '../../../services/categories.service';
+import {TransactionCreateDto} from '../../../models/transactionCreateDto';
+import {TransactionsService} from '../../../services/transactions.service';
 
 @Component({
   selector: 'app-add-transaction-modal',
@@ -34,42 +40,75 @@ import {FormsModule} from '@angular/forms';
   ]
 })
 
-export class AddTransactionModalComponent {
+export class AddTransactionModalComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Output() close = new EventEmitter<void>();
   @Output() submit = new EventEmitter<any>(); // pass data to parent
 
   activeClass = 'bg-lime-500 text-black font-semibold py-2 rounded-lg shadow-md text-center cursor-pointer';
-  inactiveClass = 'bg-lime-300 text-black py-2 rounded-lg text-center cursor-pointer';
+  inactiveClass = 'bg-lime-100 text-black py-2 rounded-lg text-center cursor-pointer';
 
+  accounts!: AccountDto[];
+  categories!: CategoryDto[];
 
-  categories = [
-    { id: 'ec660544-47cb-412a-a712-74eba993ccaf', label: 'Groceries' },
-    { id: 'abc', label: 'Transport' }
-  ];
+  constructor (
+    private accountsService: AccountsService,
+    private categoriesService: CategoriesService,
+    private transactionService: TransactionsService
+  ) {}
 
-  accounts = [
-    { id: 'acc1', title: 'Main Account' },
-    { id: 'acc2', title: 'Savings' }
-  ];
+  ngOnInit() {
+    this.accountsService.getAllAccounts().subscribe({
+      next: (accounts) => {
+        this.accounts = accounts;
+        console.log("Fetched accounts successfully");
+      },
+      error: (err) => {
+        console.error("Failed to fetch accounts", err);
+      }
+    });
 
-  formData = {
+    this.categoriesService.getAllCategories().subscribe({
+      next: (categories) => {
+        this.categories = categories;
+        console.log("Fetched categories successfully");
+        console.log(this.categories);
+      },
+      error: (err) => {
+        console.error("Failed to fetch categories", err);
+      }
+    });
+  }
+
+  formData: TransactionCreateDto = {
     title: '',
     description: '',
     type: 'EXPENSE',
     amount: '',
-    date: '',
     categoryId: '',
     accountId: '',
-    userId: '2d992f25-0238-4224-ab3f-23b42b006254' // replace later
+    userId: '2d992f25-0238-4224-ab3f-23b42b006254', // replace later
+    date: ''
   };
 
   submitForm() {
     this.submit.emit(this.formData);
-    this.close.emit(); // also close modal
+    this.transactionService.createTransaction(this.formData).subscribe({
+      next: () => {
+        console.log('Transaction created successfully');
+        this.close.emit(); // Close the modal after successful submission
+      },
+      error: (err) => {
+        console.error('Failed to create transaction', err);
+      }
+    });
   }
 
   onOverlayClick(): void {
     this.close.emit();
+  }
+
+  debug() {
+    console.log("Button clicked");
   }
 }

@@ -9,7 +9,7 @@ export const routes: Routes = [
     path: '',
     component: ShellComponent,
     children: [
-      { path: '', redirectTo: 'accounts', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'accounts', component: AccountsComponent },
       { path: 'accounts/:id', component: AccountDetailsComponent },
