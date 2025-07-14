@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {TransactionsService} from '../../services/transactions.service';
-import {TransactionDto} from '../../models/transaction.dto';
-import {NgClass, NgForOf} from '@angular/common';
-import { CurrencyIntlPipe} from '../../shared/pipes/currency-intl.pipe';
+import { Component, OnInit } from '@angular/core';
+import { NgClass, NgForOf } from '@angular/common';
+
 import { NgChartsModule } from 'ng2-charts';
-import { ChartConfiguration } from 'chart.js/auto';
-import { ChartData, ChartOptions, ChartType, ChartDataset } from 'chart.js';
-import {AddTransactionModalComponent} from '../transactions/add-transaction-modal/add-transaction-modal.component';
+import { ChartData, ChartDataset, ChartConfiguration } from 'chart.js';
+
+import { TransactionsService } from '../../services/transactions.service';
+import { TransactionDto } from '../../models/transaction.dto';
+import { AddTransactionModalComponent } from '../transactions/add-transaction-modal/add-transaction-modal.component';
+import { CurrencyIntlPipe } from '../../shared/pipes/currency-intl.pipe';
 
 
 
@@ -26,7 +27,7 @@ import {AddTransactionModalComponent} from '../transactions/add-transaction-moda
 export class DashboardComponent implements OnInit {
 
   allTransactions: TransactionDto[] = [];
-  isTransactionModalOpen: boolean = false;
+  isTransactionModalOpen = false;
 
   constructor(private transactionService: TransactionsService) {}
 

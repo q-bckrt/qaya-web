@@ -18,6 +18,7 @@ export class TransactionsService {
     return this.http.get<TransactionDto[]>(`${this.baseUrl}`);
   }
 
+
   createTransaction(transaction: TransactionCreateDto): Observable<TransactionCreateDto> {
     console.log('Creating transaction', transaction);
     return this.http.post<TransactionCreateDto>(`${this.baseUrl}`, transaction);
